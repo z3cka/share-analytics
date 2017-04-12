@@ -60,15 +60,27 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](http://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
 
+### Environment Recommendations
+* nvm
+* pyenv
+
 ### Installation
 
 * `git clone <repository-url>` this repository
 * change into the new directory
+* `nvm install --lts`
+<!--WIP* `nvm install v4.8.2`-->
 * `npm install`
+* `npm install -g bower`
 * `bower install`
-* set up your config/local.yml (If this file does not exist, you may need to `ember g`)
+  * or `bower --allow-root install`
+<!--WIP* `npm install -g ember-cli`-->
+* set up your config/local.yml 
+  * (If this file does not exist, you may need to `ember g`)
+  * `./node_modules/ember-cli/bin/ember g blueprint 
 
-* createa new virtualenv
+* create a new virtualenv
+  * 
 * `pip install -r requirements.txt`
 * Set up postgres
 * create a backend/settings/local.py and configure django to connect to your database in it.
