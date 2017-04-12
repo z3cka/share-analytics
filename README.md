@@ -61,35 +61,33 @@ You will need the following things properly installed on your computer.
 * [PhantomJS](http://phantomjs.org/)
 
 ### Environment Recommendations
-* nvm
-* pyenv
+* nvm – Node version manager
+* pyenv + pyenv-virtualenv + pyenv-virtualenvwrapper
+* **Docker image with this stuff:** https://hub.docker.com/r/z3cka/pyenvianvm/
+  * This image is based on [z3cka/c9](https://hub.docker.com/r/z3cka/c9/), so it comes with an the cloud9 editor
 
 ### Installation
 
 * `git clone <repository-url>` this repository
 * change into the new directory
 * `nvm install --lts`
-<!--WIP* `nvm install v4.8.2`-->
 * `npm install`
 * `npm install -g bower`
 * `bower install`
-  * or `bower --allow-root install`
-<!--WIP* `npm install -g ember-cli`-->
+  * or `bower --allow-root install` _(my docker setup uses root :-P)_
 * set up your config/local.yml 
-  * (If this file does not exist, you may need to `ember g`)
+  * (If this file does not exist, you **will** need to `ember g` _(ember generate)_)
   * `./node_modules/ember-cli/bin/ember generate ember-osf`
 
 * create a new virtualenv
   * `pyenv install 3.5.3`
   * `pyenv virtualenv 3.5.3 env-3.5.3`
   * `pyenv virtualenvwrapper`
-* change into service directory: `cd service` 
+* change into service directory: `cd service`
 * set python version for service directory
   * `pyenv activate env-3.5.3`
-* install more apt deps: 
-  <!--* `apt update && apt install -y postgresql postgresql-dev python-dev`-->
+* install more postgresql deps:
   * `apt install -y postgresql postgresql-contrib libpq-dev`
-  <!--* `pip install install psycopg2`-->
 * `pip install -r requirements.txt`
 * Set up postgres _(TODO: need more info)_
   * start the local postgres server: `service postgresql start`
@@ -105,9 +103,10 @@ You will need the following things properly installed on your computer.
     ALTER ROLE myprojectuser SET timezone TO 'UTC';
     ```
   * Grant perms: `postgres=# GRANT ALL PRIVILEGES ON DATABASE shareanalytics TO shareanalyticsuser;`
-  * quit postgres terminal: `postgres=#  \q` + exit postgres user `exit`
-* create a backend/settings/local.py and configure django to connect to your database in it.
-* or use service/settings/local.py and configure django to connect to your database in it.
+  * quit postgres terminal: `postgres=#  \q`
+  * exit postgres user `exit`
+* create a `backend/settings/local.py` and configure django to connect to your database in it.
+  * or **use** existing `service/settings/local.py` and configure django to connect to your database in it by matching the db creds you used above.
 * `cd service`
 * `./manage.py migrate`
 
@@ -116,7 +115,7 @@ You will need the following things properly installed on your computer.
 * change to root of repo
 * `ember serve` or _(in my case)_ `./node_modules/ember-cli/bin/ember serve`
 * `./manage.py runserver`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* Visit your app at http://your-domain-or-IP:4200/
 
 #### Code Generators
 
