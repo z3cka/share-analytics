@@ -64,7 +64,7 @@ You will need the following things properly installed on your computer.
 * nvm – Node version manager
 * pyenv + pyenv-virtualenv + pyenv-virtualenvwrapper
 * **Docker image with this stuff:** https://hub.docker.com/r/z3cka/pyenvianvm/
-  * This image is based on [z3cka/c9](https://hub.docker.com/r/z3cka/c9/), so it comes with an the cloud9 editor
+  * This image is based on [z3cka/c9](https://hub.docker.com/r/z3cka/c9/), so it comes with the cloud9 editor
 
 ### Installation
 
