@@ -77,18 +77,44 @@ You will need the following things properly installed on your computer.
 <!--WIP* `npm install -g ember-cli`-->
 * set up your config/local.yml 
   * (If this file does not exist, you may need to `ember g`)
-  * `./node_modules/ember-cli/bin/ember g blueprint 
+  * `./node_modules/ember-cli/bin/ember generate ember-osf`
 
 * create a new virtualenv
-  * 
+  * `pyenv install 3.5.3`
+  * `pyenv virtualenv 3.5.3 env-3.5.3`
+  * `pyenv virtualenvwrapper`
+* change into service directory: `cd service` 
+* set python version for service directory
+  * `pyenv activate env-3.5.3`
+* install more apt deps: 
+  <!--* `apt update && apt install -y postgresql postgresql-dev python-dev`-->
+  * `apt install -y postgresql postgresql-contrib libpq-dev`
+  <!--* `pip install install psycopg2`-->
 * `pip install -r requirements.txt`
-* Set up postgres
+* Set up postgres _(TODO: need more info)_
+  * start the local postgres server: `service postgresql start`
+  * enter interactive postgres terminal: 
+    * switch to postgres user: `su postgres`
+    * enter the postgres terminal: `psql`
+  * create database: `postgres=# CREATE DATABASE shareanalytics;`
+  * create postgres user: `postgres=# CREATE USER shareanalyticsuser WITH PASSWORD 'sharingiscaring';`
+  * _TODO:_ set django specific settings for postgres
+    ```
+    ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+    ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+    ALTER ROLE myprojectuser SET timezone TO 'UTC';
+    ```
+  * Grant perms: `postgres=# GRANT ALL PRIVILEGES ON DATABASE shareanalytics TO shareanalyticsuser;`
+  * quit postgres terminal: `postgres=#  \q` + exit postgres user `exit`
 * create a backend/settings/local.py and configure django to connect to your database in it.
-* ./manage.py migrate
+* or use service/settings/local.py and configure django to connect to your database in it.
+* `cd service`
+* `./manage.py migrate`
 
 ### Running / Development
 
-* `ember serve`
+* change to root of repo
+* `ember serve` or _(in my case)_ `./node_modules/ember-cli/bin/ember serve`
 * `./manage.py runserver`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
